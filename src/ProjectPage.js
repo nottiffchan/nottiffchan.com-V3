@@ -13,7 +13,6 @@ function ProjectPage({ pageId }) {
         .then((res) => res.json())
         .catch((err) => console.error(err));
 
-      console.log("data: ", data);
       setBlockMap(data);
     };
     fetchData();

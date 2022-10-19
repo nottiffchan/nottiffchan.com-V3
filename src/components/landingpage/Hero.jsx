@@ -55,7 +55,7 @@ const StyledHeroSection = styled.section`
     user-select: none;
   }
 
-  @media (max-width: 432px) and (min-height: 70 0px) {
+  @media (max-width: 432px) {
     padding-bottom: 10vh;
 
     .hero-gif {
@@ -73,14 +73,8 @@ const StyledHeroSection = styled.section`
 
 const StyledHeroText = styled.div`
   color: var(--purple);
-
   margin: 0;
   text-align: center;
-
-  .subtext {
-    font-size: 28px;
-    margin-top: 40px;
-  }
 
   span {
     transition: color 2s;
@@ -114,6 +108,13 @@ const StyledHeroText = styled.div`
     line-height: 120%;
   }
 
+  .subtext {
+    font-size: 28px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   @media (max-width: 900px) {
     width: 75%;
   }
@@ -126,6 +127,12 @@ const StyledHeroText = styled.div`
     .hero-text {
       max-width: 90%;
       text-align: left;
+    }
+
+    .subtext {
+      font-size: 20px;
+      text-align: left;
+      max-width: 90%;
     }
   }
 `;

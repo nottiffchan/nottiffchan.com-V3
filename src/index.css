@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-color);
 }
 
 code {
@@ -14,11 +15,14 @@ code {
 
 * {
   font-family: Averta !important;
-  background-color: var(--bg-color);
 }
 
 .notion-page-header {
   display: none !important;
+}
+
+a {
+  text-decoration: none;
 }
 
 :root {
