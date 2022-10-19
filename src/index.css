@@ -19,3 +19,173 @@ code {
 .notion-page-header {
   display: none !important;
 }
+
+:root {
+  --green: #4c8e96;
+  --black: #313b3b;
+  --purple: #5f3962;
+  --pink: #f59393;
+  --pink-light: #f7cdc4;
+  --pink-dark: #fa9293;
+  --gold: #e69f22;
+  --grey: #8e8d89;
+  --yellow: #f5d5a4;
+  --bg-color: #fdf9f7;
+  --brown: #3d3333;
+
+  --text-display: 4.2rem;
+  --text-h1: 54px;
+  --text-h2: 36px;
+  --text-h3: 24px;
+  --text-body: 18px;
+  --text-xs: 18px;
+
+  --br-lg: 30px;
+  --br-md: 20px;
+  --br-sm: 10px;
+
+  --font-family-sans-serif: "Averta", -apple-system, "Helvetica Neue",
+    "Noto Sans", sans-serif, "Apple Color Emoji";
+  --font-family-monospace: "Ubuntu Mono", SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --easing: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  --ham-before: top 0.1s ease-in 0.25s, opacity 0.1s ease-in;
+  --ham-before-active: top 0.1s ease-out, opacity 0.1s ease-out 0.12s;
+  --ham-after: bottom 0.1s ease-in 0.25s,
+    transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --ham-after-active: bottom 0.1s ease-out,
+    transform 0.22s cubic-bezier(0.215, 0.61, 0.355, 1) 0.12s;
+}
+
+* {
+  font-family: var(--font-family-sans-serif);
+}
+
+@font-face {
+  font-family: "Averta";
+  src: local("Averta"),
+    url(./assets/fonts/TW-Averta-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Averta";
+  src: local("Averta"),
+    url(./assets/fonts/TW-Averta-Semibold.ttf) format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Averta";
+  src: local("Averta"),
+    url(./assets/fonts/TW-Averta-Bold.ttf) format("truetype");
+  font-weight: 800;
+  font-style: bold;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--pink-light);
+}
+
+.purple-font {
+  color: var(--purple);
+}
+
+.text-xs {
+  font-size: var(--text-xs);
+}
+h3,
+.text-h3 {
+  font-size: var(--text-h3);
+  font-weight: bold;
+}
+h2,
+.text-h2 {
+  font-size: var(--text-h2);
+  font-weight: bold;
+}
+h1,
+.text-h1 {
+  font-size: var(--text-h1);
+  font-weight: bold;
+}
+.text-display {
+  font-size: var(--text-display);
+  font-weight: bold;
+}
+.sec-text {
+  color: var(--grey);
+}
+
+.tiff-btn {
+  font-weight: bold;
+  border-radius: var(--br-sm);
+  padding: 12px 28px;
+  transition: var(--transition);
+  border: none;
+  font-size: var(--text-xs);
+}
+
+.btn-pri {
+  background-color: var(--purple);
+  color: white;
+  box-shadow: 2px 3px #896c8b;
+}
+
+.btn-pri:hover {
+  background-color: #896c8b;
+  box-shadow: none;
+}
+
+.btn-sec {
+  color: var(--purple);
+  border: 1px solid var(--purple);
+  box-shadow: 2px 3px var(--purple);
+  background-color: transparent;
+}
+
+.btn-sec:hover {
+  box-shadow: none;
+  background-color: var(--purple);
+  color: white;
+}
+
+section {
+  margin: 0 auto;
+  padding: 100px 0;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 80px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding: 60px 0;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .tiff-btn {
+    width: auto;
+  }
+
+  :root {
+    --text-body: 20px;
+    --text-h3: 32px;
+    --text-h2: 44px;
+    --text-h1: 45px;
+    --text-display: 3.5rem;
+  }
+}
