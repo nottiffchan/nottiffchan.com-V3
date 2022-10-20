@@ -1,4 +1,5 @@
-import ProjectPage from "./ProjectPage";
+import React from "react";
+import ProjectPage from "./pages/ProjectPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { WavyContainer } from "react-wavy-transitions";
 import AnimatedCursor from "react-animated-cursor";
