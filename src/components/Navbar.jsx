@@ -5,17 +5,11 @@ import styled, { keyframes, css } from "styled-components";
 import gsap from "gsap";
 import useScrollDirection from "../hooks/useScrollDirection";
 import Button from "./Button";
+import WaveLink from "./WaveLink";
 
 const Navbar = () => {
   const scrollDirection = useScrollDirection("down");
   const [scrolledToTop, setScrolledToTop] = useState(true);
-
-  let logoRef = useRef();
-  let navLinkOne = useRef(null);
-  let navLinkTwo = useRef(null);
-  let navLinkThree = useRef(null);
-  let navLinkFour = useRef(null);
-  let navItemsRef = useRef();
 
   const handleScroll = () => {
     setScrolledToTop(window.pageYOffset < 50);
@@ -73,45 +67,30 @@ const Navbar = () => {
       scrollDirection={scrollDirection}
       scrolledToTop={scrolledToTop}
     >
-      {/* <AniLink paintDrip hex="#5F3962" to="/"> */}
-      <a href="/">
-        <Logo ref={logoRef}>
-          <img src={logo} alt="logo" />
-        </Logo>
-      </a>
-      {/* </AniLink> */}
+      <WaveLink to="/">
+        <img className="logo" src={logo} alt="logo" />
+      </WaveLink>
       <StyledLinks>
-        <ol ref={navItemsRef}>
-          <li>
-            <Link ref={navLinkOne} key="home" className="link" to="/">
+        <ol>
+          <li className="link">
+            <WaveLink key="home" to="/">
               home
-            </Link>
+            </WaveLink>
           </li>
-          <li>
-            <Link ref={navLinkTwo} key="about" className="link" to="/about">
+          <li className="link">
+            <WaveLink key="about" to="/about">
               about
-            </Link>
+            </WaveLink>
           </li>
-          <li>
-            <Link
-              ref={navLinkThree}
-              key="projects"
-              className="link"
-              to="/projects"
-            >
+          <li className="link">
+            <WaveLink key="projects" to="/projects">
               projects
-            </Link>
+            </WaveLink>
           </li>
         </ol>
-        <Button
-          ref={navLinkFour}
-          onClick={() => {
-            window.open("https://read.cv/tiffchan");
-          }}
-          variant="secondary"
-        >
-          view resume
-        </Button>
+        <a href="https://read.cv/tiffchan" target="_blank" rel="noreferrer">
+          <Button variant="secondary">view resume</Button>
+        </a>
       </StyledLinks>
     </StyledHeader>
   );
@@ -135,6 +114,7 @@ const StyledHeader = styled.header`
   backdrop-filter: blur(1px);
   transition: var(--transition);
   color: var(--purple);
+  background-color: var(--bg-color);
 
   ${(props) =>
     props.scrollDirection === "up" &&
@@ -151,6 +131,18 @@ const StyledHeader = styled.header`
       height: 70px;
       transform: translateY(-70px);
     `};
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 24px;
+    margin-left: 8px;
+  }
+
+  .logo:hover {
+    animation: ${spin} 300ms linear;
+  }
 `;
 
 const StyledLinks = styled.div`
@@ -169,7 +161,7 @@ const StyledLinks = styled.div`
     margin: 0;
     list-style: none;
 
-    .link {
+    .link .react-wavy-transitions__wavy-link {
       display: inline-block;
       text-align: center;
       padding: 0 1rem;
@@ -180,10 +172,9 @@ const StyledLinks = styled.div`
       color: var(--purple);
       transition: var(--transition);
       font-size: var(--text-xs);
-      cursor: none;
     }
 
-    .link:hover {
+    .link .react-wavy-transitions__wavy-link:hover {
       color: var(--pink);
     }
   }
@@ -197,22 +188,4 @@ const spin = keyframes`
     to {
         transform: rotate(359deg);
     }
-`;
-
-const Logo = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  height: 24px;
-  margin-left: 8px;
-
-  img {
-    height: 24px;
-  }
-
-  &:hover {
-    animation: ${spin} 300ms linear;
-    background: var(--yellow);
-  }
 `;

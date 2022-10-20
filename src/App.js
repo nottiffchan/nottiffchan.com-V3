@@ -1,5 +1,6 @@
 import ProjectPage from "./ProjectPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { WavyContainer } from "react-wavy-transitions";
 import AnimatedCursor from "react-animated-cursor";
 import LandingPage from "./pages/LandingPage";
 import styled from "styled-components";
@@ -16,6 +17,7 @@ function App() {
       <AnimatedCursor color="249, 144, 144" />
       <StyledContent>
         <Router>
+          <WavyContainer />
           {size.width && size.width > 768 ? <Navbar /> : <MobileNavbar />}
           <Routes>
             <Route path="/" element={<LandingPage />} />

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const Button = ({ children, variant = "primary", onClick, ...props }) => {
   return (
@@ -11,6 +12,12 @@ const Button = ({ children, variant = "primary", onClick, ...props }) => {
 
 export default Button;
 
+Button.propTypes = {
+  variant: PropTypes.string,
+  children: PropTypes.node,
+  onClick: PropTypes.func,
+};
+
 const StyledButton = styled.button`
   font-weight: bold;
   border-radius: 54px;
@@ -18,7 +25,7 @@ const StyledButton = styled.button`
   transition: var(--transition);
   border: none;
   font-size: var(--text-xs);
-  height: 54px;
+  min-height: 54px;
 
   &.primary {
     background-color: var(--purple);
