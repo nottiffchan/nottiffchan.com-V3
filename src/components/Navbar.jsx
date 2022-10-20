@@ -1,96 +1,126 @@
-import React, { useRef, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
 import logo from "../assets/logo.svg";
 import styled, { keyframes, css } from "styled-components";
-import gsap from "gsap";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { navLinks } from "../data/personalData";
 import useScrollDirection from "../hooks/useScrollDirection";
 import Button from "./Button";
 import WaveLink from "./WaveLink";
+import PropTypes from "prop-types";
 
 const Navbar = () => {
   const scrollDirection = useScrollDirection("down");
   const [scrolledToTop, setScrolledToTop] = useState(true);
+
+  const pathname = window.location.pathname;
+  const isHome = pathname === "/";
+  const [isMounted, setIsMounted] = useState(!isHome);
+
+  const timeout = 0;
+  const fadeClass = isHome ? "fade" : "";
+  const fadeDownClass = isHome ? "fadedown" : "";
+
+  const resumeButtonRef = useRef(null);
+  const logoRef = useRef(null);
+  const numNavLinks = navLinks.length;
 
   const handleScroll = () => {
     setScrolledToTop(window.pageYOffset < 50);
   };
 
   useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsMounted(true);
+    }, 100);
+
     window.addEventListener("scroll", handleScroll);
     return () => {
+      clearTimeout(timeout);
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  //   useEffect(() => {
-  //     const animation = gsap
-  //       .timeline()
-  //       .from(logoRef.current, {
-  //         y: -50,
-  //         delay: 0.3,
-  //         duration: 0.3,
-  //         opacity: 0,
-  //         ease: "Power3.easeOut",
-  //       })
-  //       .from(navLinkOne.current, {
-  //         y: -50,
-  //         opacity: 0,
-  //         duration: 0.1,
-  //         ease: "Power3.easeOut",
-  //       })
-  //       .from(navLinkTwo.current, {
-  //         y: -50,
-  //         opacity: 0,
-  //         duration: 0.1,
-  //         ease: "Power3.easeOut",
-  //       })
-  //       .from(navLinkThree.current, {
-  //         y: -50,
-  //         opacity: 0,
-  //         duration: 0.1,
-  //         ease: "Power3.easeOut",
-  //       })
-  //       .from(navLinkFour.current, {
-  //         y: -50,
-  //         opacity: 0,
-  //         duration: 0.1,
-  //         ease: "Power3.easeOut",
-  //       });
+  function NavLinkListItem({ url, name, i }) {
+    var nodeRef = useRef(null);
+    return (
+      <CSSTransition
+        in={isMounted}
+        timeout={500}
+        classNames={fadeDownClass}
+        nodeRef={nodeRef}
+      >
+        <div ref={nodeRef} style={{ transitionDelay: `${i * 100}ms` }}>
+          <li className="link">
+            <WaveLink to={url}>{name}</WaveLink>
+          </li>
+        </div>
+      </CSSTransition>
+    );
+  }
 
-  //     return () => {
-  //       animation.progress(0).kill();
-  //     };
-  //   }, []);
+  NavLinkListItem.propTypes = {
+    url: PropTypes.string,
+    name: PropTypes.string,
+    i: PropTypes.number,
+  };
+
+  const ResumeButton = (
+    <a href="https://read.cv/tiffchan" target="_blank" rel="noreferrer">
+      <Button variant="secondary">view resume</Button>
+    </a>
+  );
 
   return (
     <StyledHeader
       scrollDirection={scrollDirection}
       scrolledToTop={scrolledToTop}
     >
-      <WaveLink to="/">
-        <img className="logo" src={logo} alt="logo" />
-      </WaveLink>
+      <TransitionGroup component={null}>
+        {isMounted && (
+          <CSSTransition
+            in={isMounted}
+            nodeRef={logoRef}
+            classNames={fadeClass}
+            timeout={timeout}
+          >
+            <div ref={logoRef}>
+              <WaveLink to="/">
+                <img className="logo" src={logo} alt="logo" />
+              </WaveLink>
+            </div>
+          </CSSTransition>
+        )}
+      </TransitionGroup>
+
       <StyledLinks>
         <ol>
-          <li className="link">
-            <WaveLink key="home" to="/">
-              home
-            </WaveLink>
-          </li>
-          <li className="link">
-            <WaveLink key="about" to="/about">
-              about
-            </WaveLink>
-          </li>
-          <li className="link">
-            <WaveLink key="projects" to="/projects">
-              projects
-            </WaveLink>
-          </li>
+          <TransitionGroup component={null}>
+            {isMounted &&
+              navLinks &&
+              navLinks.map(({ url, name }, i) => (
+                <NavLinkListItem key={i} url={url} name={name} i={i} />
+              ))}
+          </TransitionGroup>
         </ol>
-        <a href="https://read.cv/tiffchan" target="_blank" rel="noreferrer">
-          <Button variant="secondary">view resume</Button>
-        </a>
+
+        <TransitionGroup component={null}>
+          {isMounted && navLinks && (
+            <CSSTransition
+              classNames={fadeDownClass}
+              timeout={timeout}
+              nodeRef={resumeButtonRef}
+            >
+              <div
+                ref={resumeButtonRef}
+                style={{
+                  transitionDelay: `${numNavLinks * 100}ms`,
+                }}
+              >
+                {ResumeButton}
+              </div>
+            </CSSTransition>
+          )}
+        </TransitionGroup>
       </StyledLinks>
     </StyledHeader>
   );
@@ -98,7 +128,29 @@ const Navbar = () => {
 
 export default Navbar;
 
-const StyledHeader = styled.header`
+const spin = keyframes`
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+`;
+
+const StyledHeader = styled.nav`
+  .fadedown-enter {
+    opacity: 0.01;
+    transform: translateY(-20px);
+    transition: opacity 300ms var(--easing), transform 300ms var(--easing);
+  }
+
+  .fadedown-enter-active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: opacity 300ms var(--easing), transform 300ms var(--easing);
+  }
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -178,14 +230,4 @@ const StyledLinks = styled.div`
       color: var(--pink);
     }
   }
-`;
-
-const spin = keyframes`
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(359deg);
-    }
 `;

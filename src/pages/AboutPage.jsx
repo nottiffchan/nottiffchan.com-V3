@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import React, { useEffect, useRef } from "react";
 import oldMe from "../assets/aboutpage/greyscaleOldMe.jpg";
 import youngMe from "../assets/aboutpage/greyscaleYoungMe.jpg";
@@ -16,19 +17,17 @@ const AboutPage = () => {
   const width = useWindowSize().width;
   const revealTitle = useRef(null);
   const revealPhoto = useRef(null);
-  const revealPara1 = useRef(null);
-  const revealPara2 = useRef(null);
-  const revealPara3 = useRef(null);
+  const revealBody = useRef(null);
+  const revealAboutPics = useRef(null);
 
   const myPhotoRef = useRef(null);
 
-  //   useEffect(() => {
-  //     sr.reveal(revealTitle.current, srConfig());
-  //     sr.reveal(revealPhoto.current, srConfig());
-  //     sr.reveal(revealPara1.current, srConfig());
-  //     sr.reveal(revealPara2.current, srConfig());
-  //     sr.reveal(revealPara3.current, srConfig());
-  //   }, []);
+  useEffect(() => {
+    sr.reveal(revealTitle.current, srConfig());
+    sr.reveal(revealPhoto.current, srConfig());
+    sr.reveal(revealBody.current, srConfig());
+    sr.reveal(revealAboutPics.current, srConfig());
+  }, []);
 
   return (
     <StyledAboutSection id="about">
@@ -40,8 +39,8 @@ const AboutPage = () => {
         Hey there! I'm Tiff 👋🏻
       </h2>
       <AboutRow>
-        <div className="text-col col">
-          <div ref={revealPara1}>
+        <div className="text-col col" ref={revealBody}>
+          <div>
             <h3>Designer, developer and plant mother.</h3>
             <p style={{ marginBottom: "60px" }}>
               I’m a curious soul and product designer from <b>Singapore</b> with
@@ -49,7 +48,7 @@ const AboutPage = () => {
             </p>
           </div>
 
-          <div ref={revealPara2}>
+          <div>
             <p style={{ marginBottom: "60px" }}>
               I’m currently a <b>Product Design Intern with Grab</b>. In the
               past 3 years, I’ve gotten the chance to do a number of
@@ -60,7 +59,7 @@ const AboutPage = () => {
             </p>
           </div>
 
-          <div ref={revealPara3}>
+          <div>
             <p>
               My design process is inspired by my background in both engineering
               and design, I love connecting the dots between business goals,
@@ -89,33 +88,35 @@ const AboutPage = () => {
         </div>
       </AboutRow>
 
-      <h3
-        style={{
-          fontWeight: "500",
-          marginBottom: "20px",
-          color: "var(--purple)",
-        }}
-      >
-        When I’m not on Figma, I’m...
-      </h3>
-      <StyledAboutPicsRow>
-        <AboutPicsElem
-          imgLink={codinggif}
-          caption="Turning my designs into code 👩🏻‍💻"
-        ></AboutPicsElem>
-        <AboutPicsElem
-          imgLink={sushiAbout}
-          caption="Making sushi 🍣"
-        ></AboutPicsElem>
-        <AboutPicsElem
-          imgLink={bladingAbout}
-          caption="Roller blading 🛼"
-        ></AboutPicsElem>
-        <AboutPicsElem
-          imgLink={kopAbout}
-          caption="Dressing up my dog Kopi 🐶"
-        ></AboutPicsElem>
-      </StyledAboutPicsRow>
+      <div ref={revealAboutPics}>
+        <h3
+          style={{
+            fontWeight: "500",
+            marginBottom: "20px",
+            color: "var(--purple)",
+          }}
+        >
+          When I’m not on Figma, I’m...
+        </h3>
+        <StyledAboutPicsRow>
+          <AboutPicsElem
+            imgLink={codinggif}
+            caption="Turning my designs into code 👩🏻‍💻"
+          ></AboutPicsElem>
+          <AboutPicsElem
+            imgLink={sushiAbout}
+            caption="Making sushi 🍣"
+          ></AboutPicsElem>
+          <AboutPicsElem
+            imgLink={bladingAbout}
+            caption="Roller blading 🛼"
+          ></AboutPicsElem>
+          <AboutPicsElem
+            imgLink={kopAbout}
+            caption="Dressing up my dog Kopi 🐶"
+          ></AboutPicsElem>
+        </StyledAboutPicsRow>
+      </div>
     </StyledAboutSection>
   );
 };
@@ -231,6 +232,11 @@ const AboutPicsElem = ({ imgLink, caption }) => {
       <p className="caption">{caption}</p>
     </StyledAboutPicsElem>
   );
+};
+
+AboutPicsElem.propTypes = {
+  imgLink: PropTypes.string,
+  caption: PropTypes.string,
 };
 
 export default AboutPage;

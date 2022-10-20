@@ -35,11 +35,10 @@ const StyledHeroSection = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 100px);
+  min-height: 100vh;
   width: 100%;
   max-width: 1200px;
   padding: 0;
-  padding-top: 100px;
 
   .scroll-down {
     position: absolute;
@@ -47,6 +46,7 @@ const StyledHeroSection = styled.section`
     left: 28px;
     font-size: 16px;
     color: var(--grey);
+    display: block;
   }
 
   .hero-gif {
@@ -64,10 +64,10 @@ const StyledHeroSection = styled.section`
       margin-left: auto;
       margin-right: auto;
     }
-  }
 
-  @media (max-width: 1600px) {
-    justify-content: start;
+    .scroll-down {
+      display: none;
+    }
   }
 `;
 
@@ -113,10 +113,6 @@ const StyledHeroText = styled.div`
     margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
-  }
-
-  @media (max-width: 900px) {
-    width: 75%;
   }
 
   @media (max-width: 600px) {

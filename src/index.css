@@ -131,39 +131,6 @@ h1,
   color: var(--grey);
 }
 
-.tiff-btn {
-  font-weight: bold;
-  border-radius: var(--br-sm);
-  padding: 12px 28px;
-  transition: var(--transition);
-  border: none;
-  font-size: var(--text-xs);
-}
-
-.btn-pri {
-  background-color: var(--purple);
-  color: white;
-  box-shadow: 2px 3px #896c8b;
-}
-
-.btn-pri:hover {
-  background-color: #896c8b;
-  box-shadow: none;
-}
-
-.btn-sec {
-  color: var(--purple);
-  border: 1px solid var(--purple);
-  box-shadow: 2px 3px var(--purple);
-  background-color: transparent;
-}
-
-.btn-sec:hover {
-  box-shadow: none;
-  background-color: var(--purple);
-  color: white;
-}
-
 section {
   margin: 0 auto;
   padding: 100px 0;
@@ -182,10 +149,6 @@ section {
 }
 
 @media screen and (min-width: 576px) {
-  .tiff-btn {
-    width: auto;
-  }
-
   :root {
     --text-body: 20px;
     --text-h3: 32px;
@@ -193,4 +156,47 @@ section {
     --text-h1: 45px;
     --text-display: 3.5rem;
   }
+}
+
+/* transition styles */
+/* Fade up */
+.fadeup-enter {
+  opacity: 0.01;
+  transform: translateY(20px);
+  transition: opacity 300ms var(--easing), transform 300ms var(--easing);
+}
+
+.fadeup-enter-active {
+  opacity: 1;
+  transform: translateY(0px);
+  transition: opacity 300ms var(--easing), transform 300ms var(--easing);
+}
+
+/* Fade down */
+.fadedown-enter {
+  opacity: 0.01;
+  transform: translateY(-20px);
+  transition: opacity 300ms var(--easing), transform 300ms var(--easing);
+}
+
+.fadedown-enter-active {
+  opacity: 1;
+  transform: translateY(0px);
+  transition: opacity 300ms var(--easing), transform 300ms var(--easing);
+}
+
+/* Fade */
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms var(--easing);
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms var(--easing);
 }

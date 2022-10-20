@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import logo from "../assets/logo.svg";
 import useScrollDirection from "../hooks/useScrollDirection";
+import { navLinks } from "../data/personalData";
 
 const MobileNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,21 +25,6 @@ const MobileNavbar = () => {
 
   const buttonRef = useRef(null);
   const navRef = useRef(null);
-
-  var navLinks = [
-    {
-      name: "home",
-      url: "/",
-    },
-    {
-      name: "about",
-      url: "/about",
-    },
-    {
-      name: "projects",
-      url: "/projects",
-    },
-  ];
 
   const onResize = (e) => {
     if (e.currentTarget.innerWidth > 768) {
@@ -151,6 +137,7 @@ const StyledHeader = styled.header`
   backdrop-filter: blur(1px);
   transition: var(--transition);
   color: var(--purple);
+  background-color: var(--bg-color);
 
   ${(props) =>
     props.scrollDirection === "up" &&

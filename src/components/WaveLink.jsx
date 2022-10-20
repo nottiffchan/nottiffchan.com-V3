@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 const WaveLink = ({ color, children, ...props }) => {
   var colorsArr = ["var(--purple)", "var(--pink)", "var(--gold)"];
   var randomColor = colorsArr[Math.floor(Math.random() * colorsArr.length)];
-  console.log("randomColor: ", randomColor);
 
   return (
     <WavyLink color={color ? color : randomColor} {...props}>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NotionRenderer } from "react-notion";
 import "react-notion/src/styles.css";
+import PropTypes from "prop-types";
 
 function ProjectPage({ pageId }) {
   const [blockMap, setBlockMap] = useState();
@@ -28,3 +29,7 @@ function ProjectPage({ pageId }) {
 }
 
 export default ProjectPage;
+
+ProjectPage.propTypes = {
+  pageId: PropTypes.string.isRequired,
+};
