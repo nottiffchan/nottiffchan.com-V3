@@ -112,19 +112,19 @@ h3,
 .text-h3 {
   font-size: var(--text-h3);
   font-weight: bold;
-  letter-spacing: -2px;
+  letter-spacing: -0.03em;
 }
 h2,
 .text-h2 {
   font-size: var(--text-h2);
   font-weight: bold;
-  letter-spacing: -2px;
+  letter-spacing: -0.03em;
 }
 h1,
 .text-h1 {
   font-size: var(--text-h1);
   font-weight: bold;
-  letter-spacing: -2px;
+  letter-spacing: -0.03em;
 }
 .text-display {
   font-size: var(--text-display);

@@ -79,7 +79,7 @@ const StyledFooter = styled.div`
     color: var(--bg-color);
     font-size: 70px;
     font-weight: 800;
-    line-height: 180%;
+    line-height: 140%;
     width: 90%;
   }
   .link {
@@ -111,8 +111,12 @@ const StyledFooter = styled.div`
     }
   }
   @media (max-width: 550px) {
+    padding: 0 28px;
+
     .boldtext {
       font-size: 50px;
+      line-height: 130%;
+      width: 100%;
     }
     .smalltext {
       font-size: 15px;

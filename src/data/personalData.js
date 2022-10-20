@@ -15,3 +15,9 @@ export const navLinks = [
     url: "/projects",
   },
 ];
+
+export const catalogText = `
+  I’m a curious soul from Singapore with a love for 
+  <span class="highlight">visual design, design systems</span>, and 
+  <span class="highlight">empowering users.</span>
+`;
