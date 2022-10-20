@@ -36,7 +36,7 @@ const AboutPage = () => {
         className="purple-font"
         ref={revealTitle}
       >
-        Hey there! I'm Tiff 👋🏻
+        {"Hey there! I'm Tiff 👋🏻"}
       </h2>
       <AboutRow>
         <div className="text-col col" ref={revealBody}>
@@ -54,8 +54,8 @@ const AboutPage = () => {
               past 3 years, I’ve gotten the chance to do a number of
               internships, always advocating for good design at companies from
               small startups to large organisations. I’m in my final year in the{" "}
-              <b>National University of Singapore</b> where I'm a Computer
-              Science major.
+              <b>National University of Singapore</b>
+              {" where I'm a Computer Science major."}
             </p>
           </div>
 

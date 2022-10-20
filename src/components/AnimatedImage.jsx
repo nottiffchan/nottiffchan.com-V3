@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import hoverEffect from "hover-effect";
 import overlay from "../assets/aboutpage/animationOverlay.jpeg";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const AnimatedImage = React.forwardRef((props, ref) => {
   const [hoverDistort, setHoverDistort] = useState("");
+  console.log("hoverDistort: ", hoverDistort);
 
   useEffect(() => {
     setHoverDistort(
@@ -32,7 +34,17 @@ const AnimatedImage = React.forwardRef((props, ref) => {
   );
 });
 
+AnimatedImage.displayName = "AnimatedImage";
+
 export default AnimatedImage;
+
+AnimatedImage.propTypes = {
+  props: PropTypes.node,
+  before: PropTypes.node,
+  after: PropTypes.node,
+  width: PropTypes.node,
+  height: PropTypes.node,
+};
 
 const StyledAnimatedImage = styled.div`
   canvas:nth-child(n + 2) {

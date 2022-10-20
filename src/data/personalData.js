@@ -1,6 +1,5 @@
 export const heroSentence =
-  // "Hello! I'm Tiffany Chan, a Product Designer from Singapore who codes.";
-  "Lorem ipsum dolor amet cnosceitut amit lorem ipsum dolor amet colonosopy.";
+  "Hello! I'm Tiffany Chan, a Product Designer from Singapore who codes.";
 
 export const navLinks = [
   {
