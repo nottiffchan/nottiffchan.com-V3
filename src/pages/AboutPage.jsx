@@ -12,6 +12,7 @@ import codinggif from "../assets/aboutpage/codinggif1.gif";
 import bladingAbout from "../assets/aboutpage/blading.png";
 import sushiAbout from "../assets/aboutpage/sushi.png";
 import kopAbout from "../assets/aboutpage/kopi.png";
+import { aboutPara } from "../data/aboutPageData";
 
 const AboutPage = () => {
   const width = useWindowSize().width;
@@ -42,29 +43,7 @@ const AboutPage = () => {
         <div className="text-col col" ref={revealBody}>
           <div>
             <h3>Designer, developer and plant mother.</h3>
-            <p style={{ marginBottom: "60px" }}>
-              I’m a curious soul and product designer from <b>Singapore</b> with
-              a love for visual design, design systems and empowering users.
-            </p>
-          </div>
-
-          <div>
-            <p style={{ marginBottom: "60px" }}>
-              I’m currently a <b>Product Design Intern with Grab</b>. In the
-              past 3 years, I’ve gotten the chance to do a number of
-              internships, always advocating for good design at companies from
-              small startups to large organisations. I’m in my final year in the{" "}
-              <b>National University of Singapore</b>
-              {" where I'm a Computer Science major."}
-            </p>
-          </div>
-
-          <div>
-            <p>
-              My design process is inspired by my background in both engineering
-              and design, I love connecting the dots between business goals,
-              technical constraints and user satisfaction.
-            </p>
+            <p dangerouslySetInnerHTML={{ __html: aboutPara }} />
           </div>
         </div>
 
@@ -89,15 +68,7 @@ const AboutPage = () => {
       </AboutRow>
 
       <div ref={revealAboutPics}>
-        <h3
-          style={{
-            fontWeight: "500",
-            marginBottom: "20px",
-            color: "var(--purple)",
-          }}
-        >
-          When I’m not on Figma, I’m...
-        </h3>
+        <h3>When I’m not on Figma, I’m...</h3>
         <StyledAboutPicsRow>
           <AboutPicsElem
             imgLink={codinggif}
@@ -131,6 +102,12 @@ const StyledAboutSection = styled.section`
     margin: 40px auto;
   }
 
+  h3 {
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--purple);
+  }
+
   @media (max-width: 1280px) {
     padding-right: 40px;
     padding-left: 40px;
@@ -149,19 +126,13 @@ const AboutRow = styled.div`
   flex-direction: column-reverse;
   flex-wrap: wrap;
   width: 100%;
-  margin-bottom: 150px;
+  margin-bottom: 100px;
 
   .text-col {
     display: flex;
     flex-direction: column;
     flex-basis: 100%;
     padding-right: 32px;
-  }
-
-  .text-col h3 {
-    font-weight: 500;
-    margin-bottom: 20px;
-    color: var(--purple);
   }
 
   .text-col p {
@@ -190,7 +161,7 @@ const AboutRow = styled.div`
       flex: 2;
     }
     .text-col p {
-      width: 88%;
+      width: 95%;
     }
   }
 
@@ -210,6 +181,15 @@ const StyledAboutPicsRow = styled.div`
   }
 `;
 
+const AboutPicsElem = ({ imgLink, caption }) => {
+  return (
+    <StyledAboutPicsElem>
+      <img src={imgLink} alt={caption} />
+      <p className="caption">{caption}</p>
+    </StyledAboutPicsElem>
+  );
+};
+
 const StyledAboutPicsElem = styled.div`
   display: flex;
   flex-direction: column;
@@ -224,15 +204,6 @@ const StyledAboutPicsElem = styled.div`
     width: 48%;
   }
 `;
-
-const AboutPicsElem = ({ imgLink, caption }) => {
-  return (
-    <StyledAboutPicsElem>
-      <img src={imgLink} alt={caption} />
-      <p className="caption">{caption}</p>
-    </StyledAboutPicsElem>
-  );
-};
 
 AboutPicsElem.propTypes = {
   imgLink: PropTypes.string,

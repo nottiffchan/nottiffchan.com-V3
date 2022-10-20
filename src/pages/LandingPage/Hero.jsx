@@ -106,6 +106,7 @@ const StyledHeroText = styled.div`
     margin-right: auto;
     font-weight: 800;
     line-height: 120%;
+    letter-spacing: -2px;
   }
 
   .subtext {
