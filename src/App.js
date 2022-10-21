@@ -29,6 +29,7 @@ function App() {
                 <ProjectPage pageId="d0ffd99c246b418db93a9c19b2943cf6" />
               }
             />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Router>
       </StyledContent>
