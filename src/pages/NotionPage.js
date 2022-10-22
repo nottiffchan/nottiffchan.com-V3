@@ -62,10 +62,26 @@ const StyledNotionWrapper = styled.div`
   }
 
   .notion-purple {
-    color: var(--purple);
+    color: var(--grey);
+  }
+
+  b {
+    font-weight: bold !important;
   }
 
   .notion-h1 {
     margin-top: 0.5rem;
+    font-size: 44px;
+    letter-spacing: -0.03rem;
+    color: var(--purple);
+  }
+
+  .notion-h2 {
+    font-weight: bold !important;
+    font-size: 30px;
+  }
+
+  .notion-h3 {
+    font-size: 24px;
   }
 `;
