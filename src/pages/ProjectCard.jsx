@@ -1,69 +1,86 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import WaveLink from "../components/WaveLink";
 
 const ProjectCard = ({
   catalogImage,
   projectName,
-  title,
   description,
+  eyebrow,
   textCol,
+  projectPathname,
 }) => {
   return (
     <StyledProjectCard textCol={textCol}>
       <div className="project-image-wrap">
-        <img src={catalogImage} alt="" />
+        <WaveLink to={"/projects/" + projectPathname}>
+          <img src={catalogImage} alt="" />
+        </WaveLink>
       </div>
       <div className="text">
-        <p>{projectName}</p>
-        <h2 className="title">{title}</h2>
-        <p>{description}</p>
+        <p className="eyebrow">{eyebrow}</p>
+        <h2 className="projectName">{projectName}</h2>
+        <p className="description">{description}</p>
       </div>
     </StyledProjectCard>
   );
 };
 
 ProjectCard.propTypes = {
-  catalogImage: PropTypes.object,
+  catalogImage: PropTypes.string,
   projectName: PropTypes.string,
-  title: PropTypes.string,
   description: PropTypes.string,
+  eyebrow: PropTypes.string,
   textCol: PropTypes.string,
+  projectPathname: PropTypes.string,
 };
 
 export default ProjectCard;
 
-const StyledProjectCard = styled.a`
+const StyledProjectCard = styled.div`
   display: block;
   height: 355px;
   padding: 35px 30px;
   position: relative;
   transition: transform 0.4s;
 
+  :hover {
+    transform: scale(0.965);
+  }
+
   .text {
     position: relative;
     transition: transform 0.4s;
-  }
-
-  :hover {
-    transform: scale(0.965);
   }
 
   :hover .text {
     transform: scale(0.955);
   }
 
-  .title {
+  .eyebrow {
+    color: #57696a;
+    font-size: 16px;
+    margin-bottom: 12px;
+    margin-top: 0;
+  }
+
+  .projectName {
     transition: transform 0.4s;
     color: ${(props) => (props.textCol ? props.textCol : "var(--purple)")};
     display: block;
     max-width: 300px;
-    margin-bottom: 16px;
-    margin-top: 0px;
     position: relative;
     font-size: 26px;
     line-height: 1.2;
     font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+
+  .description {
+    margin: 0;
+    color: var(--black);
   }
 
   .project-image-wrap {
@@ -77,8 +94,7 @@ const StyledProjectCard = styled.a`
     perspective: 100px;
     overflow: hidden;
     will-change: transform;
-    transition: transform 0.3s, -webkit-transform 0.3s, -moz-transform 0.3s,
-      -o-transform 0.3s;
+    transition: transform 0.3s;
   }
 
   .project-image-wrap img {
@@ -95,38 +111,17 @@ const StyledProjectCard = styled.a`
   @media (min-width: 375px) {
     padding: 51px 40px;
 
-    .title {
+    .projectName {
       font-size: 30px;
-      margin-bottom: 24px;
     }
   }
   @media (min-width: 1024px) {
     padding: 60px;
-    height: 460px;
+    height: 450px;
 
-    .title {
-      font-size: 48px;
+    .projectName {
+      font-size: 40px;
       max-width: 500px;
-    }
-  }
-  @media (min-width: 1200px) {
-    padding: 72px;
-    height: 520px;
-
-    .title {
-      font-size: 50px;
-      max-width: 570px;
-      margin-bottom: 30px;
-    }
-  }
-  @media (min-width: 1600px) {
-    padding: 120px;
-    height: 732px;
-
-    .title {
-      font-size: 60px;
-      max-width: 620px;
-      margin-bottom: 40px;
     }
   }
 `;
