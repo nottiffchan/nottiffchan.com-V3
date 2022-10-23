@@ -1,31 +1,69 @@
-import React from "react";
+/* eslint-disable */
+import React, { useState, useEffect, useRef } from "react";
 import herogif from "../../assets/herogif.gif";
 import styled from "styled-components";
 import { heroSentence } from "../../data/personalData";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const Hero = () => {
   var charArrHeroSentence = heroSentence.split("");
+  const navDelay = 1000;
+  const loaderDelay = 2000;
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setIsMounted(true), navDelay);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  const one = <img className="hero-gif" src={herogif} alt="" />;
+  const two = (
+    <div className="hero-text">
+      {charArrHeroSentence.map((char, index) => {
+        return <span key={index}>{char}</span>;
+      })}
+    </div>
+  );
+
+  const three = (
+    <div className="subtext">
+      Currently at{" "}
+      <a href="https://www.grab.com/sg/" target="_blank" rel="noreferrer">
+        Grab
+      </a>
+    </div>
+  );
+  const four = <p className="scroll-down">SCROLL DOWN</p>;
+
+  const items = [one, two, three, four];
 
   return (
     <StyledHeroSection>
-      <img className="hero-gif" src={herogif} alt="" />
+      <TransitionGroup component={null}>
+        {isMounted &&
+          items.map((item, i) => (
+            <CSSTransition key={i} classNames="fadeup" timeout={loaderDelay}>
+              <div style={{ transitionDelay: `${(i + 1) * 100 + 400}ms` }}>
+                {item}
+              </div>
+            </CSSTransition>
+          ))}
+      </TransitionGroup>
+      {/* <img className="hero-gif" src={herogif} alt="" />
 
-      <StyledHeroText>
-        <div className="hero-text">
-          {charArrHeroSentence.map((char, index) => {
-            return <span key={index}>{char}</span>;
-          })}
-        </div>
-        <div className="subtext">
-          Currently at{" "}
-          <a href="https://www.grab.com/sg/" target="_blank" rel="noreferrer">
-            Grab
-          </a>
-          .
-        </div>
-      </StyledHeroText>
+      <div className="hero-text">
+        {charArrHeroSentence.map((char, index) => {
+          return <span key={index}>{char}</span>;
+        })}
+      </div>
+      <div className="subtext">
+        Currently at{" "}
+        <a href="https://www.grab.com/sg/" target="_blank" rel="noreferrer">
+          Grab
+        </a>
+      </div>
 
-      <p className="scroll-down">SCROLL DOWN</p>
+      <p className="scroll-down">SCROLL DOWN</p> */}
     </StyledHeroSection>
   );
 };
@@ -55,26 +93,12 @@ const StyledHeroSection = styled.section`
     user-select: none;
   }
 
-  @media (max-width: 432px) {
-    padding-bottom: 10vh;
-
-    .hero-gif {
-      width: 90%;
-      padding-top: 24px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .scroll-down {
-      display: none;
-    }
+  .subtext {
+    font-size: 28px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
   }
-`;
-
-const StyledHeroText = styled.div`
-  color: var(--purple);
-  margin: 0;
-  text-align: center;
 
   span {
     transition: color 2s;
@@ -98,38 +122,102 @@ const StyledHeroText = styled.div`
   }
 
   .hero-text {
+    color: var(--purple);
+    text-align: center;
     font-size: clamp(36px, 5.4vw, 62px);
     margin-top: 48px;
-    display: block;
-    max-width: 80%;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 0;
+
+    display: block;
+    max-width: 80%;
     font-weight: 800;
     line-height: 120%;
     letter-spacing: -2px;
   }
 
-  .subtext {
-    font-size: 28px;
-    margin-top: 40px;
+  @media (max-width: 600px) {
+    .hero-text {
+      width: 95%;
+    }
+  }
+
+  @media (max-width: 432px) {
+    padding-bottom: 10vh;
+
+    .hero-text {
+      max-width: 90%;
+      text-align: left;
+    }
+
+    .hero-gif {
+      width: 90%;
+      padding-top: 24px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .scroll-down {
+      display: none;
+    }
+
+    .subtext {
+      font-size: 20px;
+      text-align: left;
+      width: 90%;
+    }
+  }
+`;
+
+const StyledHeroText = styled.div`
+  span {
+    transition: color 2s;
+    transition-delay: 1.5s;
+  }
+
+  span:nth-child(1n):hover {
+    color: var(--pink);
+  }
+
+  span:nth-child(2n):hover {
+    color: var(--gold);
+  }
+
+  span:nth-child(3n):hover {
+    color: var(--pink-dark);
+  }
+
+  span:hover {
+    transition: color 0s;
+  }
+
+  .hero-text {
+    color: var(--purple);
+    text-align: center;
+    font-size: clamp(36px, 5.4vw, 62px);
+    margin-top: 48px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 0;
+
+    display: block;
+    max-width: 80%;
+    font-weight: 800;
+    line-height: 120%;
+    letter-spacing: -2px;
   }
 
   @media (max-width: 600px) {
-    width: 95%;
+    .hero-text {
+      width: 95%;
+    }
   }
 
   @media (max-width: 400px) {
     .hero-text {
       max-width: 90%;
       text-align: left;
-    }
-
-    .subtext {
-      font-size: 20px;
-      text-align: left;
-      max-width: 90%;
     }
   }
 `;
