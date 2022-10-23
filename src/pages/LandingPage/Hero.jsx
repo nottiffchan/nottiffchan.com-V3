@@ -31,9 +31,8 @@ const Hero = () => {
       </a>
     </div>
   );
-  const four = <p className="scroll-down">SCROLL DOWN</p>;
 
-  const items = [one, two, three, four];
+  const items = [one, two, three];
 
   return (
     <StyledHeroSection>
@@ -41,12 +40,13 @@ const Hero = () => {
         {isMounted &&
           items.map((item, i) => (
             <CSSTransition key={i} classNames="fadeup" timeout={2000}>
-              <div style={{ transitionDelay: `${(i + 1) * 200 + 450}ms` }}>
+              <div style={{ transitionDelay: `${(i + 1) * 200 + 400}ms` }}>
                 {item}
               </div>
             </CSSTransition>
           ))}
       </TransitionGroup>
+      <p className="scroll-down">SCROLL DOWN</p>
     </StyledHeroSection>
   );
 };
