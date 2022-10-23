@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Hero from "./Hero";
 import styled from "styled-components";
 import { catalogText } from "../../data/personalData";
 import AboutPage from "../AboutPage";
 import ProjectsPage from "../ProjectsPage";
+import sr from "../../utils/sr";
+import { srConfig } from "../../data/srConfig";
 
 const LandingPage = () => {
+  const revealCatalogText = useRef(null);
+
+  useEffect(() => {
+    sr.reveal(revealCatalogText.current, srConfig());
+  }, []);
+
   return (
     <div style={{ paddingBottom: "100px" }}>
       <Hero />
-      <StyledCatalogSection>
+      <StyledCatalogSection ref={revealCatalogText}>
         <h3 dangerouslySetInnerHTML={{ __html: catalogText }} />
       </StyledCatalogSection>
       <ProjectsPage />
