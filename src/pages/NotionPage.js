@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { NotionRenderer } from "react-notion";
 import "react-notion/src/styles.css";
 import { useParams } from "react-router-dom";
-import { mainProjects } from "../data/personalData";
+import { mainProjects, subProjects } from "../data/personalData";
 import ProjectNextCase from "../components/ProjectNextCase";
 import { useLocation } from "react-router-dom";
 
@@ -14,7 +14,7 @@ function NotionPage() {
   const [blockMap, setBlockMap] = useState();
 
   function getNotionPageId(projectPathname) {
-    for (var project of mainProjects) {
+    for (var project of mainProjects.concat(subProjects)) {
       if (project.projectPathname === projectPathname) {
         return project.notionPageId;
       }
@@ -29,7 +29,7 @@ function NotionPage() {
         )}`
       )
         .then((res) => res.json())
-        .catch((err) => console.error(err));
+        .catch(() => (window.location.href = "/404"));
 
       setBlockMap(data);
     };

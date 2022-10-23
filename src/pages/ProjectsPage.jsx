@@ -1,48 +1,78 @@
 import React from "react";
 import styled from "styled-components";
-import ProjectCard from "./ProjectCard";
-import { mainProjects } from "../data/personalData";
+import ProjectCard from "../components/ProjectCard";
+import SubProjectCard from "../components/SubProjectCard";
+import { mainProjects, subProjects } from "../data/personalData";
 
 const ProjectsPage = () => {
   return (
-    <StyledProjectContainer>
-      <div className="grid">
-        {mainProjects.map((project, i) => {
+    <>
+      <StyledMainProjectContainer>
+        <div className="grid">
+          {mainProjects.map((project, i) => {
+            return (
+              <div className={"grid-col " + project.size} key={i}>
+                <ProjectCard
+                  catalogImage={project.catalogImage}
+                  projectName={project.projectName}
+                  description={project.description}
+                  eyebrow={project.eyebrow}
+                  textCol={project.textCol}
+                  transitionCol={project.transitionCol}
+                  projectPathname={project.projectPathname}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </StyledMainProjectContainer>
+      <h3
+        style={{
+          textAlign: "center",
+          marginTop: "200px",
+          color: "var(--purple)",
+        }}
+      >
+        other projects
+      </h3>
+      <StyledSubProjectContainer>
+        {subProjects.map((project, i) => {
           return (
-            <div className={"grid-col " + project.size} key={i}>
-              <ProjectCard
+            <div key={i} className="col">
+              <SubProjectCard
                 catalogImage={project.catalogImage}
                 projectName={project.projectName}
                 description={project.description}
                 eyebrow={project.eyebrow}
-                textCol={project.textCol}
-                transitionCol={project.transitionCol}
                 projectPathname={project.projectPathname}
               />
             </div>
           );
         })}
-      </div>
-    </StyledProjectContainer>
+      </StyledSubProjectContainer>
+    </>
   );
 };
 
 export default ProjectsPage;
 
-const StyledProjectContainer = styled.div`
+const StyledMainProjectContainer = styled.div`
+  padding: 0 30px;
+  button {
+    height: 100%;
+    width: 100%;
+  }
+
   padding-top: 100px !important;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 30px;
 
   .grid-col {
     margin-bottom: 30px;
   }
 
   @media (min-width: 1024px) {
-    padding: 0 60px;
-
     .grid {
       display: flex;
       flex-wrap: wrap;
@@ -61,12 +91,30 @@ const StyledProjectContainer = styled.div`
       width: calc(50% - 40px);
     }
   }
+`;
 
-  @media (min-width: 1200px) {
-    padding: 0 90px;
+const StyledSubProjectContainer = styled.div`
+  button {
+    height: 100%;
+    width: 100%;
+  }
 
-    .lg img {
-      width: 100%;
+  padding-bottom: 200px !important;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 30px;
+
+  .col {
+    width: 100%;
+  }
+
+  @media (min-width: 500px) {
+    .col {
+      width: calc(33.3% - 24px);
+      margin: 0 12px;
     }
   }
 `;

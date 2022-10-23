@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import WaveLink from "../components/WaveLink";
+import WaveLink from "./WaveLink";
 
 const ProjectCard = ({
   catalogImage,
@@ -115,6 +115,7 @@ const StyledProjectCard = styled.div`
       font-size: 30px;
     }
   }
+
   @media (min-width: 1024px) {
     padding: 60px;
     height: 450px;
