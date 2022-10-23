@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import WaveLink from "./WaveLink";
+import sr from "../utils/sr";
+import { srConfig } from "../data/srConfig";
 
 const ProjectCard = ({
   catalogImage,
@@ -11,8 +13,14 @@ const ProjectCard = ({
   textCol,
   projectPathname,
 }) => {
+  const revealCardRef = useRef(null);
+
+  useEffect(() => {
+    sr.reveal(revealCardRef.current, srConfig());
+  }, []);
+
   return (
-    <StyledProjectCard textCol={textCol}>
+    <StyledProjectCard textCol={textCol} ref={revealCardRef}>
       <div className="project-image-wrap">
         <WaveLink to={"/projects/" + projectPathname}>
           <img src={catalogImage} alt="" />
