@@ -13,6 +13,7 @@ import ProjectsPage from "./pages/ProjectsPage";
 import Footer from "./components/Footer";
 import PageNotFound from "./pages/404";
 import ScrollToTop from "./hooks/ScrollToTop";
+import LoadingPage from "./pages/LoadingPage";
 
 function App() {
   const size = useWindowSize();
@@ -20,22 +21,31 @@ function App() {
     <div className="App">
       <AnimatedCursor color="249, 144, 144" />
 
-      <Router>
-        <ScrollToTop />
+      {document.readyState !== "interactive" &&
+      document.readyState !== "complete" ? (
+        <LoadingPage />
+      ) : (
+        <Router>
+          <ScrollToTop />
 
-        <StyledContent>
-          <WavyContainer />
-          {size.width && size.width > 768 ? <Navbar /> : <MobileNavbar />}
+          <StyledContent>
+            <WavyContainer />
+            {size.width && size.width > 768 ? <Navbar /> : <MobileNavbar />}
 
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/projects/:projectPathname" element={<NotionPage />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </StyledContent>
-      </Router>
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/projects" element={<ProjectsPage />} />
+              <Route
+                path="/projects/:projectPathname"
+                element={<NotionPage />}
+              />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </StyledContent>
+        </Router>
+      )}
+
       <Footer />
     </div>
   );

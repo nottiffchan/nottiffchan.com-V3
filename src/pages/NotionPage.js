@@ -6,12 +6,14 @@ import { useParams } from "react-router-dom";
 import { mainProjects, subProjects } from "../data/personalData";
 import ProjectNextCase from "../components/ProjectNextCase";
 import { useLocation } from "react-router-dom";
+import LoadingPage from "./LoadingPage";
 
 function NotionPage() {
   const params = useParams();
   const projectPathname = params.projectPathname;
   const { pathname } = useLocation();
   const [blockMap, setBlockMap] = useState();
+  const [loading, setLoading] = useState(true);
 
   function getNotionPageId(projectPathname) {
     for (var project of mainProjects.concat(subProjects)) {
@@ -23,6 +25,7 @@ function NotionPage() {
 
   useEffect(() => {
     var fetchData = async () => {
+      setLoading(true);
       const data = await fetch(
         `https://notion-api.splitbee.io/v1/page/${getNotionPageId(
           projectPathname
@@ -32,16 +35,18 @@ function NotionPage() {
         .catch(() => (window.location.href = "/404"));
 
       setBlockMap(data);
+      setLoading(false);
     };
     try {
       fetchData();
     } catch (error) {
       console.log("error: ", error);
+      window.location.href = "/404";
     }
   }, [pathname]);
 
-  return !blockMap ? (
-    <div style={{ height: "100vh" }}></div>
+  return loading ? (
+    <LoadingPage />
   ) : (
     <StyledNotionWrapper>
       <NotionRenderer blockMap={blockMap} fullPage />
