@@ -1,6 +1,6 @@
 import catalog1 from "../assets/catalog-1.png";
 import catalog2 from "../assets/catalog-2.png";
-import catalog3 from "../assets/catalog-3.png";
+// import catalog3 from "../assets/catalog-3.png";
 import catalog4 from "../assets/catalog-4.png";
 import subproject1 from "../assets/subproject-1.png";
 import subproject2 from "../assets/subproject-2.png";
@@ -47,22 +47,22 @@ export const mainProjects = [
     description: "Internship at Grab",
     eyebrow: "Product Design Internship | 2022",
     catalogImage: catalog2,
-    size: "sm",
+    size: "lg",
     textCol: "#104126",
     projectPathname: "grab-internship",
     notionPageId: "d0ffd99c246b418db93a9c19b2943cf6",
   },
-  {
-    projectName: "larry",
-    description:
-      "How might we motivate users to keep up with improving their vocabulary?",
-    eyebrow: "Student Project | 2021",
-    catalogImage: catalog3,
-    size: "sm",
-    textCol: "#0A2938",
-    projectPathname: "larry",
-    notionPageId: "94dd7e444ca14445b7a68bff7f98a1d2",
-  },
+  // {
+  //   projectName: "larry",
+  //   description:
+  //     "How might we motivate users to keep up with improving their vocabulary?",
+  //   eyebrow: "Student Project | 2021",
+  //   catalogImage: catalog3,
+  //   size: "sm",
+  //   textCol: "#0A2938",
+  //   projectPathname: "larry",
+  //   notionPageId: "94dd7e444ca14445b7a68bff7f98a1d2",
+  // },
   {
     description:
       "Giving students a simple and effective way to plan their classes.",
@@ -91,7 +91,7 @@ export const subProjects = [
     projectName: "shilly",
     eyebrow: "🔒 Coming Soon",
     catalogImage: subproject2,
-    projectPathname: "shilly",
+    projectPathname: "",
     notionPageId: "b3b02386b04d45058dcc28308b691515",
   },
   {

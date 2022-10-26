@@ -19,9 +19,14 @@ const SubProjectCard = ({
   }, []);
   return (
     <StyledSubProjectCard ref={revealCardRef}>
-      <WaveLink to={"/projects/" + projectPathname}>
+      {projectPathname ? (
+        <WaveLink to={"/projects/" + projectPathname}>
+          <img className="image" src={catalogImage} alt="" />
+        </WaveLink>
+      ) : (
         <img className="image" src={catalogImage} alt="" />
-      </WaveLink>
+      )}
+
       <div className="text">
         <p className="eyebrow">{eyebrow}</p>
         <h3 className="projectName">{projectName}</h3>
