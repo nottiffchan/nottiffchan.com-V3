@@ -1,4 +1,5 @@
 import React from "react";
+import { Analytics } from "@vercel/analytics/react";
 import NotionPage from "./pages/NotionPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { WavyContainer } from "react-wavy-transitions";
@@ -47,6 +48,7 @@ function App() {
       )}
 
       <Footer />
+      <Analytics />
     </div>
   );
 }
