@@ -54,16 +54,16 @@ const StyledProjectCard = styled.div`
   transition: transform 0.4s;
 
   :hover {
-    transform: scale(0.965);
+    transform: scale(0.965) !important;
   }
 
   .text {
     position: relative;
-    transition: transform 0.4s;
+    transition: transform 0.5s;
   }
 
   :hover .text {
-    transform: scale(0.955);
+    transform: scale(0.955) !important;
   }
 
   .eyebrow {

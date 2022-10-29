@@ -63,7 +63,7 @@ const StyledNotionWrapper = styled.div`
   }
 
   .notion {
-    padding-top: 80px;
+    padding-top: var(--nav-height);
   }
 
   .notion-purple {

@@ -40,7 +40,12 @@ const Hero = () => {
         {isMounted &&
           items.map((item, i) => (
             <CSSTransition key={i} classNames="fadeup" timeout={2000}>
-              <div style={{ transitionDelay: `${(i + 1) * 200 + 400}ms` }}>
+              <div
+                style={{
+                  transitionDelay: `${(i + 1) * 200 + 400}ms`,
+                }}
+                className="hero-item-wrapper"
+              >
                 {item}
               </div>
             </CSSTransition>
@@ -56,10 +61,11 @@ const StyledHeroSection = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: calc(100vh - var(--nav-height));
   width: 100%;
   max-width: 1200px;
   padding: 0;
+  padding-top: var(--nav-height);
 
   .scroll-down {
     position: absolute;
@@ -135,10 +141,14 @@ const StyledHeroSection = styled.section`
     }
 
     .hero-gif {
-      width: 90%;
+      width: 100%;
       padding-top: 24px;
       margin-left: auto;
       margin-right: auto;
+    }
+
+    .hero-item-wrapper {
+      width: 100%;
     }
 
     .scroll-down {

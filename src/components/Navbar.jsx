@@ -147,7 +147,7 @@ const StyledHeader = styled.nav`
   z-index: 11;
   padding: 0px 20px;
   width: calc(100% - 40px);
-  height: 80px;
+  height: var(--nav-height);
   filter: none !important;
   pointer-events: auto !important;
   user-select: auto !important;
