@@ -114,6 +114,9 @@ const StyledAboutSection = styled.section`
   }
 
   @media (max-width: 400px) {
+    padding-right: 20px;
+    padding-left: 20px;
+
     .mobileImgMe {
       margin: 0;
       width: 100%;

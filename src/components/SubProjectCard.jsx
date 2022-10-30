@@ -95,7 +95,7 @@ const StyledSubProjectCard = styled.div`
   }
 
   @media (max-width: 500px) {
-    padding: 20px;
+    padding: 20px 12px;
     .description {
       font-size: 14px;
     }

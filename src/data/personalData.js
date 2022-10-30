@@ -35,7 +35,7 @@ export const mainProjects = [
     projectName: "Rescale Lab Redesign",
     description:
       "Improved conversion rates by ~30% for a startup-building SaaS",
-    eyebrow: "Full Stack Engineer/Designer Internship | 2021",
+    eyebrow: "Internship | 2021",
     catalogImage: catalog1,
     size: "lg",
     textCol: "#19423C",

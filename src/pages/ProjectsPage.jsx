@@ -57,7 +57,8 @@ const ProjectsPage = () => {
 export default ProjectsPage;
 
 const StyledMainProjectContainer = styled.div`
-  padding: 0 30px;
+  padding: 0 12px;
+
   button {
     height: 100%;
     width: 100%;
@@ -105,13 +106,14 @@ const StyledSubProjectContainer = styled.div`
   margin-right: auto;
   display: flex;
   flex-wrap: wrap;
-  padding: 0 30px;
 
   .col {
     width: 100%;
   }
 
   @media (min-width: 500px) {
+    padding: 0 30px;
+
     .col {
       width: calc(33.3% - 24px);
       margin: 0 12px;
